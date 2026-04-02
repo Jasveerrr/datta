@@ -22,7 +22,7 @@ export default function Navbar() {
     { name: "Services", href: "/#services" },
     { name: "Garage", href: "/#garage" },
     { name: "Track Repair", href: "/track" },
-    { name: "AdminHQ", href: "/admin" },
+    { name: "Admin Login", href: "/admin/login" },
   ];
 
   return (

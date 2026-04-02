@@ -93,17 +93,23 @@ export default function TrackRepair() {
 
                   return (
                     <div key={stage.id} className="flex flex-col items-center relative group">
-                      <motion.div 
-                        animate={isCurrent ? { scale: [1, 1.2, 1], boxShadow: ["0px 0px 0px rgba(212,160,23,0)", "0px 0px 20px rgba(212,160,23,0.5)", "0px 0px 0px rgba(212,160,23,0)"] } : {}}
-                        transition={isCurrent ? { duration: 2, repeat: Infinity } : {}}
-                        className={`w-16 h-16 rounded-full flex items-center justify-center border-2 transition-colors duration-500 ${
+                      {isCurrent && (
+                        <motion.div 
+                          className="absolute w-16 h-16 rounded-full bg-primary/30 blur-sm top-0"
+                          animate={{ scale: [1, 1.6, 1], opacity: [0.8, 0, 0.8] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        />
+                      )}
+                      
+                      <div 
+                        className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${
                           isActive 
-                            ? "bg-obsidian border-primary text-primary" 
-                            : "bg-black border-silver/20 text-silver/40"
-                        } ${isCurrent ? "bg-primary/10 border-4" : ""}`}
+                            ? "bg-obsidian border-primary text-primary shadow-[0_0_20px_rgba(212,160,23,0.3)]" 
+                            : "bg-[#0A0A0A] border-silver/10 text-silver/40"
+                        }`}
                       >
-                        <Icon size={24} />
-                      </motion.div>
+                        <Icon size={isCurrent ? 28 : 24} className={isCurrent ? "scale-110" : ""} />
+                      </div>
                       
                       <div className="mt-4 text-center absolute top-20 w-32 -translate-x-1/2 left-1/2">
                         <p className={`text-[10px] uppercase font-bold tracking-widest ${isActive ? "text-white" : "text-silver/40"}`}>
@@ -130,17 +136,31 @@ export default function TrackRepair() {
           {/* Notes */}
           <div className="md:col-span-1 space-y-6">
             <h3 className="text-2xl font-heading font-bold">Technician Notes</h3>
-            <div className="bg-obsidian border border-silver/10 p-6 rounded relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-primary">
-              <p className="text-xs text-primary uppercase tracking-widest font-bold mb-2">Marcus Rossi</p>
+            <div className="bg-[#0A0A0A] border border-silver/10 p-6 rounded-xl relative overflow-hidden group hover:border-primary/50 transition-colors shadow-xl">
+              <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
+              <div className="flex justify-between items-start mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-black border border-primary text-primary flex items-center justify-center font-bold tracking-widest text-sm shadow-[0_0_15px_rgba(212,160,23,0.2)]">
+                    MR
+                  </div>
+                  <div>
+                    <p className="text-sm text-white font-bold tracking-wider uppercase">Marcus Rossi</p>
+                    <p className="text-[10px] text-silver/60 uppercase tracking-widest">Lead Technician</p>
+                  </div>
+                </div>
+                <div className="text-right flex flex-col items-end">
+                  <div className="px-2 py-0.5 bg-obsidian border border-silver/20 rounded uppercase tracking-widest text-[9px] text-silver/60 mb-1">Update</div>
+                  <p className="text-[10px] text-primary font-mono font-black">10:45 AM</p>
+                </div>
+              </div>
               <p className="text-sm text-silver/80 italic leading-relaxed">
-                "Primer cured flawlessly overnight. We are proceeding with the base coat application using the Glasurit 90 Line. Color match spectrometer shows Delta-E of 0.2."
+                "Primer cured flawlessly overnight. We are proceeding with the base coat application using the Glasurit 90 Line. Color match spectrometer shows Delta-E of 0.2. Precision on track."
               </p>
-              <p className="text-[10px] text-silver/40 mt-4 text-right">Today at 10:45 AM</p>
             </div>
             
-            <div className="bg-black/40 border border-silver/10 p-6 flex flex-col items-center justify-center text-center gap-4">
+            <div className="bg-[#0A0A0A] border border-silver/10 p-6 flex flex-col items-center justify-center text-center gap-4 rounded-xl shadow-xl">
                <p className="text-xs uppercase tracking-widest text-silver/60">Estimated Completion</p>
-               <h4 className="text-3xl font-heading font-black text-white">48 Hours</h4>
+               <h4 className="text-4xl font-heading font-black text-white text-shadow-[0_0_20px_rgba(255,255,255,0.2)]">48 Hours</h4>
             </div>
           </div>
 
@@ -148,8 +168,8 @@ export default function TrackRepair() {
           <div className="md:col-span-2">
             <h3 className="text-2xl font-heading font-bold mb-6">Repair Validation</h3>
             <BeforeAfterSlider 
-              beforeImage="https://images.unsplash.com/photo-1542382103-34e7fb62b604?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
-              afterImage="https://images.unsplash.com/photo-1614165935930-b5413000b991?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+              beforeImage="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800" 
+              afterImage="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200" 
             />
           </div>
         </div>

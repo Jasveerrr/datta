@@ -79,12 +79,14 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAft
 
       {/* Slider Handle */}
       <div 
-        className="absolute top-0 bottom-0 w-1 bg-primary cursor-ew-resize flex items-center justify-center -translate-x-1/2"
+        className="absolute top-0 bottom-0 w-1 bg-primary cursor-ew-resize flex items-center justify-center -translate-x-1/2 shadow-[0_0_10px_rgba(212,160,23,0.5)]"
         style={{ left: `${sliderPosition}%` }}
       >
-        <div className="w-8 h-8 rounded-full bg-obsidian border-2 border-primary flex items-center justify-center shadow-[0_0_15px_rgba(212,160,23,0.8)]">
-          <div className="w-1 h-3 bg-silver/50 mx-[1px] rounded-full" />
-          <div className="w-1 h-3 bg-silver/50 mx-[1px] rounded-full" />
+        <div className="w-10 h-10 rounded-full bg-obsidian border-[3px] border-primary flex items-center justify-center shadow-[0_0_20px_rgba(212,160,23,1)]">
+          <div className="flex gap-[3px]">
+            <div className="w-1 h-4 bg-primary rounded-full" />
+            <div className="w-1 h-4 bg-primary rounded-full" />
+          </div>
         </div>
       </div>
     </div>
