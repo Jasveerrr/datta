@@ -4,9 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls, ContactShadows, Html } from "@react-three/drei";
 import { Suspense, useState, useRef } from "react";
 import * as THREE from "three";
-import { motion } from "framer-motion-3d";
 
-const MotionMesh = motion.mesh as any;
 
 // Simplified Car panels for damage marking
 const panels = [
