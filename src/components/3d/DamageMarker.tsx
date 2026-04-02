@@ -58,7 +58,7 @@ export default function DamageMarker({ onDamageSelect }: { onDamageSelect: (part
               const isHovered = hovered === panel.id;
               
               return (
-                <MotionMesh
+                <mesh
                   key={panel.id}
                   position={panel.position as [number, number, number]}
                   onClick={(e: any) => {
@@ -74,11 +74,7 @@ export default function DamageMarker({ onDamageSelect }: { onDamageSelect: (part
                     setHovered(null);
                     document.body.style.cursor = 'auto';
                   }}
-                  animate={{
-                    scale: isHovered ? 1.1 : 1,
-                    y: (panel.position[1] as number) + (isSelected ? 0.1 : 0)
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                 scale={isHovered ? 1.1 : 1}
                 >
                   <sphereGeometry args={[0.3, 32, 32]} />
                   <meshStandardMaterial 
@@ -98,7 +94,7 @@ export default function DamageMarker({ onDamageSelect }: { onDamageSelect: (part
                       </div>
                     </Html>
                   )}
-                </MotionMesh>
+                </mesh>
               );
             })}
             
