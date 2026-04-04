@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +20,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // FIX 1: Removed the "Get Quotes" highlighted/outlined link — only solid GET QUOTE button remains
   const navLinks = [
     { name: "Services", href: "/#services" },
     { name: "Garage", href: "/#garage" },
@@ -44,16 +47,17 @@ export default function Navbar() {
               <li key={link.name}>
                 <Link
                   href={link.href}
-                  className="text-sm uppercase tracking-widest text-silver hover:text-primary transition-colors duration-300"
+                  className="text-sm uppercase tracking-widest transition-colors duration-300 text-silver hover:text-primary"
                 >
                   {link.name}
                 </Link>
               </li>
             ))}
           </ul>
-          <Link href="/quote">
-            <MagneticButton variant="primary">Get Quote</MagneticButton>
-          </Link>
+          {/* FIX 2: Solid GET QUOTE button wired to /quotes */}
+          <MagneticButton variant="primary" onClick={() => router.push("/quotes")}>
+            Get Quote
+          </MagneticButton>
         </nav>
 
         {/* Mobile Toggle */}
@@ -87,18 +91,20 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-3xl font-heading uppercase tracking-widest text-silver hover:text-primary transition-colors duration-300"
+                    className="text-3xl font-heading uppercase tracking-widest transition-colors duration-300 text-silver hover:text-primary"
                   >
                     {link.name}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/quote" onClick={() => setIsMobileMenuOpen(false)}>
-                  <MagneticButton variant="primary" className="mt-8 text-lg px-8 py-4">
-                    Get Instant Quote
-                  </MagneticButton>
-                </Link>
+                <MagneticButton
+                  variant="primary"
+                  className="mt-8 text-lg px-8 py-4"
+                  onClick={() => { setIsMobileMenuOpen(false); router.push("/quotes"); }}
+                >
+                  Get Instant Quote
+                </MagneticButton>
               </li>
             </ul>
           </motion.div>

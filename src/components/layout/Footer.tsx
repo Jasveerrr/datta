@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-black py-16 border-t border-silver/10 relative overflow-hidden">
       {/* Decorative Gold Line */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
-      
+
       <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
         <div className="col-span-1 md:col-span-1">
           <Link href="/" className="text-3xl font-heading font-bold tracking-tighter flex items-center gap-2 mb-6">

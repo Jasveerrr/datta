@@ -5,41 +5,41 @@ import { useState } from "react";
 import { X, Wrench, Clock, CheckCircle2 } from "lucide-react";
 
 const bays = [
-  { 
-    id: 1, 
-    name: "Bay 01", 
-    status: "IN REPAIR", 
-    car: "2023 Porsche 911 GT3", 
-    owner: "R*** V.", 
-    progress: 65, 
+  {
+    id: 1,
+    name: "Bay 01",
+    status: "IN REPAIR",
+    car: "2023 Porsche 911 GT3",
+    owner: "R*** V.",
+    progress: 65,
     eta: "Tomorrow, 4:00 PM",
-    icon: Wrench, 
+    icon: Wrench,
     color: "text-primary border-primary",
     bgColor: "bg-primary/20",
     svgX: 100
   },
-  { 
-    id: 2, 
-    name: "Bay 02", 
-    status: "QUEUED", 
-    car: "2021 Mercedes G63 AMG", 
-    owner: "S*** L.", 
-    progress: 0, 
+  {
+    id: 2,
+    name: "Bay 02",
+    status: "QUEUED",
+    car: "2021 Mercedes G63 AMG",
+    owner: "S*** L.",
+    progress: 0,
     eta: "Pending Inspection",
-    icon: Clock, 
+    icon: Clock,
     color: "text-silver border-silver",
     bgColor: "bg-silver/20",
     svgX: 400
   },
-  { 
-    id: 3, 
-    name: "Bay 03", 
-    status: "READY", 
-    car: "1969 Ferrari Dino", 
-    owner: "M*** T.", 
-    progress: 100, 
+  {
+    id: 3,
+    name: "Bay 03",
+    status: "READY",
+    car: "1969 Ferrari Dino",
+    owner: "M*** T.",
+    progress: 100,
     eta: "Awaiting Pickup",
-    icon: CheckCircle2, 
+    icon: CheckCircle2,
     color: "text-green-500 border-green-500",
     bgColor: "bg-green-500/20",
     svgX: 700
@@ -53,7 +53,7 @@ export default function GarageSection() {
     <section id="garage" className="py-32 bg-[#050505] relative border-t border-silver/5 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 z-10 relative">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -61,7 +61,7 @@ export default function GarageSection() {
           >
             The <span className="text-primary italic">Workshop</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -74,27 +74,27 @@ export default function GarageSection() {
 
         {/* Interactive Floor Plan Container */}
         <div className="relative w-full max-w-6xl mx-auto h-[600px] bg-[#0A0A0A] border border-silver/10 rounded-2xl shadow-2xl overflow-hidden flex items-end justify-center">
-          
+
           {/* Subtle Grid Background */}
           <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(#D4A017 1px, transparent 1px), linear-gradient(90deg, #D4A017 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
 
           {/* SVG Floor Plan */}
           <svg viewBox="0 0 1000 600" className="absolute inset-0 w-full h-full preserve-3d" preserveAspectRatio="xMidYMax slice">
-            
+
             {/* Garage Walls/Lines */}
             <path d="M 0 150 L 1000 150" stroke="#333" strokeWidth="2" strokeDasharray="10 10" />
             <path d="M 0 500 L 1000 500" stroke="#444" strokeWidth="4" />
-            
+
             {/* rendered bays */}
             {bays.map((bay, i) => (
               <g key={bay.id} transform={`translate(${bay.svgX}, 200)`} className="cursor-pointer" onClick={() => setActiveBay(bay.id)}>
                 {/* Bay Floor Markings */}
                 <rect x="0" y="0" width="200" height="300" fill="none" stroke="#222" strokeWidth="2" />
                 <rect x="10" y="10" width="180" height="280" fill="#111" />
-                
+
                 {/* Number */}
                 <text x="20" y="40" fill="#333" fontSize="24" fontFamily="monospace" fontWeight="bold">0{bay.id}</text>
-                
+
                 {/* Car Silhouette (Top-Down Isometric abstraction) */}
                 <motion.g
                   initial={{ opacity: 0, y: 50 }}
@@ -129,12 +129,12 @@ export default function GarageSection() {
           {/* HTML Overlays for Bays (Badges) */}
           <div className="absolute inset-0 pointer-events-none hidden md:block">
             {bays.map((bay) => (
-              <div 
-                key={bay.id} 
+              <div
+                key={bay.id}
                 className="absolute text-center transform -translate-x-1/2"
                 style={{ left: `${(bay.svgX + 100) / 1000 * 100}%`, top: '150px' }}
               >
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -152,20 +152,20 @@ export default function GarageSection() {
           {/* Side Panel UI */}
           <AnimatePresence>
             {activeBay !== null && (
-              <motion.div 
+              <motion.div
                 initial={{ x: "100%", opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: "100%", opacity: 0 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 className="absolute top-0 right-0 w-full md:w-96 h-full bg-obsidian/95 backdrop-blur-xl border-l border-primary/20 p-8 shadow-2xl z-20 flex flex-col"
               >
-                <button 
+                <button
                   onClick={() => setActiveBay(null)}
                   className="absolute top-6 right-6 text-silver/60 hover:text-primary transition-colors"
                 >
                   <X size={24} />
                 </button>
-                
+
                 {bays.filter(b => b.id === activeBay).map(bay => (
                   <div key={bay.id} className="flex flex-col h-full mt-4">
                     <div className="flex items-center gap-3 mb-8">
@@ -183,7 +183,7 @@ export default function GarageSection() {
                         <p className="text-[10px] uppercase tracking-widest text-silver/60 mb-1">Vehicle</p>
                         <p className="text-lg font-medium text-white">{bay.car}</p>
                       </div>
-                      
+
                       <div>
                         <p className="text-[10px] uppercase tracking-widest text-silver/60 mb-1">Owner</p>
                         <p className="text-sm font-medium text-silver">{bay.owner}</p>
@@ -195,7 +195,7 @@ export default function GarageSection() {
                           <span className="text-primary">{bay.progress}%</span>
                         </div>
                         <div className="w-full h-2 bg-black rounded-full overflow-hidden border border-silver/10">
-                          <motion.div 
+                          <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: `${bay.progress}%` }}
                             transition={{ duration: 1, delay: 0.2 }}

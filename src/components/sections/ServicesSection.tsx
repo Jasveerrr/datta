@@ -85,7 +85,7 @@ export default function ServicesSection() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div className="max-w-2xl">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -94,7 +94,7 @@ export default function ServicesSection() {
               Elite Servicing.<br />
               <span className="text-primary">Uncompromising Quality.</span>
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -104,7 +104,7 @@ export default function ServicesSection() {
               From minor aesthetic corrections to structural chassis reconstruction, our facility utilizes state-of-the-art technology and master craftsmanship to deliver perfection.
             </motion.p>
           </div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}

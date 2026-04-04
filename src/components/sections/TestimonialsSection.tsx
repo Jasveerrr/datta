@@ -40,7 +40,7 @@ export default function TestimonialsSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10 w-full flex flex-col items-center">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -89,13 +89,13 @@ export default function TestimonialsSection() {
 
         {/* Controls */}
         <div className="flex gap-4 mt-12">
-          <button 
+          <button
             onClick={prev}
             className="w-12 h-12 rounded-full border border-silver/20 flex items-center justify-center text-silver hover:bg-silver hover:text-obsidian hover:border-silver transition-colors"
           >
             <ChevronLeft size={20} />
           </button>
-          <button 
+          <button
             onClick={next}
             className="w-12 h-12 rounded-full border border-silver/20 flex items-center justify-center text-silver hover:bg-silver hover:text-obsidian hover:border-silver transition-colors"
           >
