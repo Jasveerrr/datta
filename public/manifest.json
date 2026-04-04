@@ -1,0 +1,16 @@
+{
+  "name": "GarageGo - Premium Car Repair",
+  "short_name": "GarageGo",
+  "description": "Premium Car Body Repair",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#F5A623",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}
